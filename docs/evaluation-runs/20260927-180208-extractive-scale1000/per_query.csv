@@ -1,0 +1,41 @@
+query_id,team,query,relevant,cross_team,isolated_top1,isolated_hit@1,isolated_hit@5,isolated_mrr,shared_top1,shared_hit@1,shared_hit@5,shared_mrr,lexical_top1,lexical_hit@1,lexical_hit@5,lexical_mrr
+0,qa,what status code should the API return when a token is no longer valid,s1;d1,True,q1,0.0,0.0,0.0,s1,1.0,1.0,1.0,d1,1.0,1.0,1.0
+1,qa,why does the checkout end-to-end test fail randomly,q2,False,q2,1.0,1.0,1.0,q2,1.0,1.0,1.0,q2,1.0,1.0,1.0
+2,qa,"the search endpoint gets slow under heavy traffic, where is the bottleneck",q5,False,q5,1.0,1.0,1.0,q5,1.0,1.0,1.0,q5,1.0,1.0,1.0
+3,qa,how should we page through very large result sets in the API,d5,True,q5,0.0,0.0,0.0,d5,1.0,1.0,1.0,d5,1.0,1.0,1.0
+4,qa,customers were billed twice after the payment provider did not respond in time,u7;d10,True,q2,0.0,0.0,0.0,u7,1.0,1.0,1.0,u7,1.0,1.0,1.0
+5,qa,are there known crashes on recent android versions,q7,False,q7,1.0,1.0,1.0,q7,1.0,1.0,1.0,q7,1.0,1.0,1.0
+6,qa,how do we stop test users from clashing when test shards run at the same time,q6,False,q6,1.0,1.0,1.0,q6,1.0,1.0,1.0,q6,1.0,1.0,1.0
+7,qa,large attachments cannot be uploaded from some browsers,u4,True,q5,0.0,0.0,0.0,u4,1.0,1.0,1.0,u8,0.0,1.0,0.3333333333333333
+8,qa,users get signed out with a server error when their session is renewed,d1;u1;s1,True,q1,0.0,0.0,0.0,u1,1.0,1.0,1.0,s5,0.0,1.0,0.5
+9,qa,is there brute force protection on sign in,s8,True,q1,0.0,0.0,0.0,s8,1.0,1.0,1.0,s8,1.0,1.0,1.0
+10,dev,which algorithm must we use to store user passwords,s2,True,d2,0.0,0.0,0.0,s2,1.0,1.0,1.0,s2,1.0,1.0,1.0
+11,dev,is it safe to build report queries by gluing user input into strings,s4,True,d3,0.0,0.0,0.0,s4,1.0,1.0,1.0,q7,0.0,1.0,0.5
+12,dev,which attributes should our session cookies have,s5,True,d7,0.0,0.0,0.0,s5,1.0,1.0,1.0,s5,1.0,1.0,1.0
+13,dev,bearer tokens showed up in plain text in our log files,s6,True,d1,0.0,0.0,0.0,s6,1.0,1.0,1.0,s6,1.0,1.0,1.0
+14,dev,people complain the portal signs them out after about a quarter of an hour,u1;d1,False,d9,0.0,1.0,0.3333333333333333,u1,1.0,1.0,1.0,u1,1.0,1.0,1.0
+15,dev,what should login test suites cover regarding token expiry,q1,True,d1,0.0,0.0,0.0,q1,1.0,1.0,1.0,q1,1.0,1.0,1.0
+16,dev,how long does the complete regression run take and what runs on every pull request,q3,True,d9,0.0,0.0,0.0,q3,1.0,1.0,1.0,q3,1.0,1.0,1.0
+17,dev,what kind of test detected a renamed field in the orders API before release,q4,True,d3,0.0,0.0,0.0,q4,1.0,1.0,1.0,q4,1.0,1.0,1.0
+18,dev,text message verification codes never arrive for some users,u8,True,d1,0.0,0.0,0.0,u8,1.0,1.0,1.0,u8,1.0,1.0,1.0
+19,dev,database overloaded when a popular cached item expires,d4,False,d4,1.0,1.0,1.0,d4,1.0,1.0,1.0,d2,0.0,1.0,0.5
+20,dev,one slow backend makes all upstream calls time out in a chain,d9,False,d9,1.0,1.0,1.0,d9,1.0,1.0,1.0,d9,1.0,1.0,1.0
+21,dev,what vulnerability was found in our token signing library,s7,True,d1,0.0,0.0,0.0,s6,0.0,1.0,0.3333333333333333,s7,1.0,1.0,1.0
+22,sec,how many failed sign-in attempts are allowed before an account is locked,s8,False,s8,1.0,1.0,1.0,s8,1.0,1.0,1.0,s8,1.0,1.0,1.0
+23,sec,a background worker keeps using more RAM until it is killed,d6,True,s8,0.0,0.0,0.0,d6,1.0,1.0,1.0,d6,1.0,1.0,1.0
+24,sec,which database engine was chosen for the customer portal,d2,True,s4,0.0,0.0,0.0,d2,1.0,1.0,1.0,d2,1.0,1.0,1.0
+25,sec,how do we avoid charging a customer twice when a delivery is retried,d10;u7,True,s9,0.0,0.0,0.0,u7,1.0,1.0,1.0,u7,1.0,1.0,1.0
+26,sec,customers report being logged out unexpectedly,u1;d1,True,s8,0.0,0.0,0.0,u1,1.0,1.0,1.0,u1,1.0,1.0,1.0
+27,sec,which negative test cases exist for revoked and expired refresh tokens,q1,True,s1,0.0,0.0,0.0,q1,1.0,1.0,1.0,q1,1.0,1.0,1.0
+28,sec,how long until a refunded amount shows up on the card,u5,True,s8,0.0,0.0,0.0,u5,1.0,1.0,1.0,u5,1.0,1.0,1.0
+29,sec,user supplied SQL fragments in the reporting module,s4,False,s4,1.0,1.0,1.0,s4,1.0,1.0,1.0,s4,1.0,1.0,1.0
+30,support,how can a customer download their invoices as PDF documents,u3,False,u3,1.0,1.0,1.0,u3,1.0,1.0,1.0,u3,1.0,1.0,1.0
+31,support,password reset messages arrive very late,u2,False,u2,1.0,1.0,1.0,u2,1.0,1.0,1.0,u2,1.0,1.0,1.0
+32,support,why are customers being kicked out of their session and what was the fix,d1;u1,False,u1,1.0,1.0,1.0,u1,1.0,1.0,1.0,s5,0.0,1.0,0.5
+33,support,"customer was charged two times, what went wrong",u7;d10,False,u7,1.0,1.0,1.0,u7,1.0,1.0,1.0,u7,1.0,1.0,1.0
+34,support,order history page is very slow for customers with lots of orders,d3,True,u1,0.0,0.0,0.0,d3,1.0,1.0,1.0,d3,1.0,1.0,1.0
+35,support,uploading big files from an Apple browser does not work,u4,False,u4,1.0,1.0,1.0,u4,1.0,1.0,1.0,u8,0.0,1.0,0.5
+36,support,what should we suggest when two-factor text messages are not received,u8,False,u8,1.0,1.0,1.0,u8,1.0,1.0,1.0,u8,1.0,1.0,1.0
+37,support,what HTTP code does the API send for an expired login token,s1;d1,True,u1,0.0,0.0,0.0,s1,1.0,1.0,1.0,d1,1.0,1.0,1.0
+38,support,the mobile app closes when a user refuses camera access,q7,True,u1,0.0,0.0,0.0,q7,1.0,1.0,1.0,q7,1.0,1.0,1.0
+39,support,which password hashing is approved,s2,True,u2,0.0,0.0,0.0,s2,1.0,1.0,1.0,s2,1.0,1.0,1.0

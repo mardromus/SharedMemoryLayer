@@ -1,0 +1,240 @@
+{
+  "run_id": "20260928-045828",
+  "dataset": {
+    "name": "LongMemEval_S (longmemeval_s_cleaned.json)",
+    "questions_total": 500,
+    "abstention_skipped": 30,
+    "questions_evaluated": 419,
+    "questions_by_type": {
+      "single-session-user": 64,
+      "multi-session": 121,
+      "single-session-preference": 30,
+      "temporal-reasoning": 127,
+      "knowledge-update": 72,
+      "single-session-assistant": 5
+    },
+    "user_turns_ingested": 102229,
+    "avg_user_turns_per_question": 244.0,
+    "sample": null,
+    "seed": 13
+  },
+  "retrieval": {
+    "hybrid": {
+      "turn_recall_any@5": 0.8831,
+      "turn_recall_all@5": 0.6372,
+      "turn_ndcg@5": 0.6629,
+      "session_recall_any@5": 0.9379,
+      "session_recall_all@5": 0.7757,
+      "session_ndcg@5": 0.6969,
+      "turn_recall_any@10": 0.9379,
+      "turn_recall_all@10": 0.8067,
+      "turn_ndcg@10": 0.7081,
+      "session_recall_any@10": 0.9666,
+      "session_recall_all@10": 0.9069,
+      "session_ndcg@10": 0.7254,
+      "turn_recall_any@50": 0.9857,
+      "turn_recall_all@50": 0.9737,
+      "turn_ndcg@50": 0.7356
+    },
+    "semantic": {
+      "turn_recall_any@5": 0.8807,
+      "turn_recall_all@5": 0.6372,
+      "turn_ndcg@5": 0.6563,
+      "session_recall_any@5": 0.9356,
+      "session_recall_all@5": 0.7733,
+      "session_ndcg@5": 0.6901,
+      "turn_recall_any@10": 0.9332,
+      "turn_recall_all@10": 0.8019,
+      "turn_ndcg@10": 0.7002,
+      "session_recall_any@10": 0.9666,
+      "session_recall_all@10": 0.9093,
+      "session_ndcg@10": 0.7191,
+      "turn_recall_any@50": 0.9857,
+      "turn_recall_all@50": 0.9737,
+      "turn_ndcg@50": 0.7289
+    },
+    "bm25": {
+      "turn_recall_any@5": 0.852,
+      "turn_recall_all@5": 0.6277,
+      "turn_ndcg@5": 0.6636,
+      "session_recall_any@5": 0.8711,
+      "session_recall_all@5": 0.7041,
+      "session_ndcg@5": 0.6775,
+      "turn_recall_any@10": 0.8902,
+      "turn_recall_all@10": 0.7422,
+      "turn_ndcg@10": 0.6925,
+      "session_recall_any@10": 0.9069,
+      "session_recall_all@10": 0.7828,
+      "session_ndcg@10": 0.6989,
+      "turn_recall_any@50": 0.9451,
+      "turn_recall_all@50": 0.8401,
+      "turn_ndcg@50": 0.7139
+    },
+    "dense": {
+      "turn_recall_any@5": 0.8305,
+      "turn_recall_all@5": 0.5107,
+      "turn_ndcg@5": 0.5697,
+      "session_recall_any@5": 0.8878,
+      "session_recall_all@5": 0.6897,
+      "session_ndcg@5": 0.6106,
+      "turn_recall_any@10": 0.9021,
+      "turn_recall_all@10": 0.7112,
+      "turn_ndcg@10": 0.6233,
+      "session_recall_any@10": 0.9499,
+      "session_recall_all@10": 0.8401,
+      "session_ndcg@10": 0.647,
+      "turn_recall_any@50": 0.9809,
+      "turn_recall_all@50": 0.9356,
+      "turn_ndcg@50": 0.6634
+    }
+  },
+  "turn_recall_all@10_by_type": {
+    "hybrid": {
+      "knowledge-update": 0.9583,
+      "multi-session": 0.7107,
+      "single-session-assistant": 1.0,
+      "single-session-preference": 0.8,
+      "single-session-user": 0.9531,
+      "temporal-reasoning": 0.7323
+    },
+    "semantic": {
+      "knowledge-update": 0.9583,
+      "multi-session": 0.7107,
+      "single-session-assistant": 1.0,
+      "single-session-preference": 0.8,
+      "single-session-user": 0.9375,
+      "temporal-reasoning": 0.7244
+    },
+    "bm25": {
+      "knowledge-update": 0.9306,
+      "multi-session": 0.562,
+      "single-session-assistant": 0.8,
+      "single-session-preference": 0.5,
+      "single-session-user": 0.9688,
+      "temporal-reasoning": 0.748
+    },
+    "dense": {
+      "knowledge-update": 0.9028,
+      "multi-session": 0.5455,
+      "single-session-assistant": 1.0,
+      "single-session-preference": 0.7667,
+      "single-session-user": 0.9531,
+      "temporal-reasoning": 0.6142
+    }
+  },
+  "search_latency_ms": {
+    "hybrid": {
+      "client": {
+        "p50": 83.9,
+        "p95": 188.7,
+        "mean": 103.5,
+        "n": 419
+      },
+      "server": {
+        "p50": 68.7,
+        "p95": 164.9,
+        "mean": 86.5,
+        "n": 419
+      }
+    },
+    "semantic": {
+      "client": {
+        "p50": 78.5,
+        "p95": 191.0,
+        "mean": 98.6,
+        "n": 419
+      },
+      "server": {
+        "p50": 66.4,
+        "p95": 170.3,
+        "mean": 84.5,
+        "n": 419
+      }
+    }
+  },
+  "ingestion": {
+    "items_per_second": 23.2,
+    "total_seconds": 4404.7,
+    "parallel_requests": 4
+  },
+  "baselines": {
+    "dense_model": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "published_reference": {
+    "longmemeval_paper_table3_M": [
+      [
+        "Stella V5 1.5B, key = value (round)",
+        "turn",
+        0.582,
+        0.481,
+        0.692,
+        0.512
+      ],
+      [
+        "Stella V5 1.5B, key = value + LLM-extracted facts (round)",
+        "turn",
+        0.644,
+        0.498,
+        0.784,
+        0.536
+      ],
+      [
+        "Stella V5 1.5B, key = value (session)",
+        "session",
+        0.706,
+        0.617,
+        0.783,
+        0.638
+      ],
+      [
+        "Stella V5 1.5B, key = value + LLM-extracted facts (session)",
+        "session",
+        0.732,
+        0.62,
+        0.862,
+        0.652
+      ]
+    ],
+    "qa_accuracy_S": [
+      [
+        "GPT-4o, oracle (evidence sessions only)",
+        "LongMemEval paper",
+        87.0,
+        null
+      ],
+      [
+        "Zep + GPT-4o",
+        "Zep paper, Table 2",
+        71.2,
+        1600
+      ],
+      [
+        "Zep + GPT-4o-mini",
+        "Zep paper, Table 2",
+        63.8,
+        1600
+      ],
+      [
+        "GPT-4o, full context (no memory layer)",
+        "Zep paper, Table 2",
+        60.2,
+        115000
+      ],
+      [
+        "GPT-4o-mini, full context (no memory layer)",
+        "Zep paper, Table 2",
+        55.4,
+        115000
+      ]
+    ]
+  },
+  "environment": {
+    "base_url": "http://127.0.0.1:8001",
+    "finished_at": "2026-09-28T06:51:55.062370+00:00",
+    "server": {
+      "provider": "fastembed",
+      "model": "BAAI/bge-small-en-v1.5",
+      "loaded": true
+    }
+  }
+}

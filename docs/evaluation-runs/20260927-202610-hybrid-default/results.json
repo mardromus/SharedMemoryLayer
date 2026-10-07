@@ -1,0 +1,223 @@
+{
+  "run_id": "20260927-202610",
+  "write_latency_ms": {
+    "n": 35,
+    "mean": 66.67,
+    "p50": 65.08,
+    "p95": 104.47,
+    "p99": 113.45,
+    "min": 38.14,
+    "max": 113.95
+  },
+  "corpus": {
+    "memories": 35,
+    "by_team": {
+      "dev": 10,
+      "qa": 8,
+      "sec": 9,
+      "support": 8
+    },
+    "by_visibility": {
+      "organization": 28,
+      "team": 6,
+      "selected_teams": 1
+    },
+    "duplicates_flagged_while_loading": 8
+  },
+  "retrieval": {
+    "queries": 40,
+    "cross_team_queries": 25,
+    "top_k": 5,
+    "similarity_threshold": 0.55,
+    "metrics": {
+      "isolated": {
+        "hit@1": 0.35,
+        "hit@5": 0.375,
+        "precision@5": 0.075,
+        "recall@5": 0.3375,
+        "mrr": 0.3583,
+        "ndcg@5": 0.3383,
+        "hit@k_cross_team_queries": 0.0,
+        "search_precision_above_threshold": 0.1027,
+        "answered_correctly_rate": 0.35,
+        "knowledge_reuse_rate": 0.0
+      },
+      "shared": {
+        "hit@1": 0.975,
+        "hit@5": 1.0,
+        "precision@5": 0.235,
+        "recall@5": 0.9625,
+        "mrr": 0.9833,
+        "ndcg@5": 0.9565,
+        "hit@k_cross_team_queries": 1.0,
+        "search_precision_above_threshold": 0.2435,
+        "answered_correctly_rate": 0.975,
+        "knowledge_reuse_rate": 0.675
+      },
+      "lexical": {
+        "hit@1": 0.85,
+        "hit@5": 1.0,
+        "precision@5": 0.245,
+        "recall@5": 0.9875,
+        "mrr": 0.9208,
+        "ndcg@5": 0.927,
+        "hit@k_cross_team_queries": 1.0
+      }
+    }
+  },
+  "search_latency_ms": {
+    "isolated": {
+      "client": {
+        "n": 120,
+        "mean": 43.26,
+        "p50": 34.85,
+        "p95": 76.8,
+        "p99": 88.73,
+        "min": 21.26,
+        "max": 100.81
+      },
+      "server": {
+        "n": 120,
+        "mean": 34.09,
+        "p50": 25.28,
+        "p95": 67.37,
+        "p99": 78.94,
+        "min": 13.73,
+        "max": 89.48
+      }
+    },
+    "shared": {
+      "client": {
+        "n": 120,
+        "mean": 34.23,
+        "p50": 33.04,
+        "p95": 49.44,
+        "p99": 60.55,
+        "min": 22.62,
+        "max": 118.17
+      },
+      "server": {
+        "n": 120,
+        "mean": 25.16,
+        "p50": 24.31,
+        "p95": 37.93,
+        "p99": 46.2,
+        "min": 15.18,
+        "max": 111.48
+      }
+    }
+  },
+  "agent_tasks": {
+    "isolated": {
+      "tasks": 40,
+      "llm_provider": "extractive",
+      "resolved_from_memory_rate": 0.375,
+      "duplicate_task_rate": 0.625,
+      "duplicates_flagged_by_server": 25,
+      "tasks_using_other_teams_memory": 0,
+      "runtime_ms": {
+        "n": 40,
+        "mean": 38.66,
+        "p50": 35.99,
+        "p95": 61.95,
+        "p99": 73.54,
+        "min": 18.72,
+        "max": 74.01
+      },
+      "task_completion_ms": {
+        "n": 40,
+        "mean": 85.48,
+        "p50": 97.6,
+        "p95": 134.49,
+        "p99": 141.08,
+        "min": 30.4,
+        "max": 142.33
+      },
+      "rederive_and_store_ms": {
+        "n": 25,
+        "mean": 74.9,
+        "p50": 74.08,
+        "p95": 98.45,
+        "p99": 104.62,
+        "min": 54.69,
+        "max": 106.46
+      }
+    },
+    "shared": {
+      "tasks": 40,
+      "llm_provider": "extractive",
+      "resolved_from_memory_rate": 1.0,
+      "duplicate_task_rate": 0.0,
+      "duplicates_flagged_by_server": 0,
+      "tasks_using_other_teams_memory": 39,
+      "runtime_ms": {
+        "n": 40,
+        "mean": 39.27,
+        "p50": 36.97,
+        "p95": 48.32,
+        "p99": 55.15,
+        "min": 31.39,
+        "max": 58.18
+      },
+      "task_completion_ms": {
+        "n": 40,
+        "mean": 39.27,
+        "p50": 36.97,
+        "p95": 48.32,
+        "p99": 55.15,
+        "min": 31.39,
+        "max": 58.18
+      },
+      "rederive_and_store_ms": {
+        "n": 0
+      }
+    }
+  },
+  "security": {
+    "protected_memories": 7,
+    "attempts_by_type": {
+      "direct_read": 20,
+      "update": 20,
+      "read_versions": 20,
+      "share_to_self": 20,
+      "semantic_search_title": 20,
+      "semantic_search_content": 20,
+      "escalation:create_team": 4,
+      "escalation:create_agent": 4,
+      "escalation:read_audit_log": 4,
+      "escalation:list_users": 4,
+      "escalation:reindex_vectors": 4
+    },
+    "blocked_by_type": {
+      "direct_read": 20,
+      "update": 20,
+      "read_versions": 20,
+      "share_to_self": 20,
+      "semantic_search_title": 20,
+      "semantic_search_content": 20,
+      "escalation:create_team": 4,
+      "escalation:create_agent": 4,
+      "escalation:read_audit_log": 4,
+      "escalation:list_users": 4,
+      "escalation:reindex_vectors": 4
+    },
+    "total_attempts": 140,
+    "blocked": 140,
+    "leaked": 0,
+    "leak_details": [],
+    "block_rate": 1.0,
+    "denials_expected_in_audit_log": 100,
+    "denials_found_in_audit_log": 100
+  },
+  "environment": {
+    "started_at": "2026-09-27T20:26:10.313442+00:00",
+    "finished_at": "2026-09-27T20:26:32.000102+00:00",
+    "base_url": "http://localhost:8000",
+    "server_version": "1.0.0",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "llm_provider": "extractive",
+    "client_python": "3.12.14",
+    "client_platform": "Linux-5.15.167.4-microsoft-standard-WSL2-aarch64-with-glibc2.41",
+    "repeat": 3
+  }
+}

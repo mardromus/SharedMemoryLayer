@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "run_id": "20261006-072432",
+    "dataset": "LoCoMo (locomo10.json)",
+    "questions_total": 1540,
+    "sample": 200,
+    "seed": 2026,
+    "k": 10,
+    "by_category": {
+      "temporal": 42,
+      "multi-hop": 37,
+      "single-hop": 109,
+      "open-domain": 12
+    },
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "dense_baseline": "sentence-transformers/all-MiniLM-L6-v2",
+    "finished_at": "2026-10-06T07:28:56.300640+00:00"
+  },
+  "answer_model": "gemma4:latest",
+  "judge_model": "gemma4:latest",
+  "questions": 135,
+  "unparsed_judgments": 0,
+  "summary": {
+    "sml_hybrid": {
+      "n": 135,
+      "correct": 98,
+      "accuracy": 0.7259,
+      "ci95": [
+        0.6452,
+        0.7941
+      ],
+      "by_category": {
+        "multi-hop": {
+          "n": 28,
+          "accuracy": 0.6786
+        },
+        "open-domain": {
+          "n": 5,
+          "accuracy": 0.8
+        },
+        "single-hop": {
+          "n": 73,
+          "accuracy": 0.8767
+        },
+        "temporal": {
+          "n": 29,
+          "accuracy": 0.3793
+        }
+      },
+      "mean_context_tokens": 513,
+      "mean_answer_seconds": 37.6,
+      "accuracy_when_evidence_retrieved": 0.819,
+      "accuracy_when_evidence_missed": 0.4,
+      "share_with_evidence_retrieved": 0.7778
+    },
+    "bm25": {
+      "n": 135,
+      "correct": 91,
+      "accuracy": 0.6741,
+      "ci95": [
+        0.5911,
+        0.7474
+      ],
+      "by_category": {
+        "multi-hop": {
+          "n": 28,
+          "accuracy": 0.5357
+        },
+        "open-domain": {
+          "n": 5,
+          "accuracy": 0.8
+        },
+        "single-hop": {
+          "n": 73,
+          "accuracy": 0.8356
+        },
+        "temporal": {
+          "n": 29,
+          "accuracy": 0.3793
+        }
+      },
+      "mean_context_tokens": 441,
+      "mean_answer_seconds": 35.6,
+      "accuracy_when_evidence_retrieved": 0.8081,
+      "accuracy_when_evidence_missed": 0.3056,
+      "share_with_evidence_retrieved": 0.7333
+    },
+    "dense": {
+      "n": 135,
+      "correct": 74,
+      "accuracy": 0.5481,
+      "ci95": [
+        0.464,
+        0.6296
+      ],
+      "by_category": {
+        "multi-hop": {
+          "n": 28,
+          "accuracy": 0.5357
+        },
+        "open-domain": {
+          "n": 5,
+          "accuracy": 0.6
+        },
+        "single-hop": {
+          "n": 73,
+          "accuracy": 0.6164
+        },
+        "temporal": {
+          "n": 29,
+          "accuracy": 0.3793
+        }
+      },
+      "mean_context_tokens": 445,
+      "mean_answer_seconds": 33.9,
+      "accuracy_when_evidence_retrieved": 0.8125,
+      "accuracy_when_evidence_missed": 0.1636,
+      "share_with_evidence_retrieved": 0.5926
+    },
+    "none": {
+      "n": 135,
+      "correct": 0,
+      "accuracy": 0.0,
+      "ci95": [
+        0.0,
+        0.0277
+      ],
+      "by_category": {
+        "multi-hop": {
+          "n": 28,
+          "accuracy": 0.0
+        },
+        "open-domain": {
+          "n": 5,
+          "accuracy": 0.0
+        },
+        "single-hop": {
+          "n": 73,
+          "accuracy": 0.0
+        },
+        "temporal": {
+          "n": 29,
+          "accuracy": 0.0
+        }
+      },
+      "mean_context_tokens": 0,
+      "mean_answer_seconds": 9.5
+    }
+  },
+  "paired_vs_sml_hybrid": {
+    "bm25": {
+      "hybrid_only_correct": 20,
+      "other_only_correct": 13,
+      "mcnemar_p": 0.29621
+    },
+    "dense": {
+      "hybrid_only_correct": 30,
+      "other_only_correct": 6,
+      "mcnemar_p": 7e-05
+    },
+    "none": {
+      "hybrid_only_correct": 98,
+      "other_only_correct": 0,
+      "mcnemar_p": 0.0
+    }
+  },
+  "judge_agreement": {
+    "model": "manual audit",
+    "n": 60,
+    "agreement": 0.8667,
+    "cohen_kappa": 0.7084,
+    "judge_more_lenient": 6,
+    "judge_stricter": 2,
+    "judge_correct_rate": 0.6833,
+    "manual_correct_rate": 0.6167
+  },
+  "finished_at": "2026-10-06T21:02:32.208288+00:00",
+  "sample_note": "first 135 questions of a 200-question stratified random sample in random order (run stopped for power reasons)"
+}

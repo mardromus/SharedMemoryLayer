@@ -1,0 +1,267 @@
+{
+  "run_id": "20260928-044654",
+  "dataset": {
+    "name": "LoCoMo (locomo10.json)",
+    "conversations": 10,
+    "turns": 5882,
+    "questions_evaluated": 1535,
+    "questions_by_category": {
+      "temporal": 320,
+      "open-domain": 92,
+      "multi-hop": 282,
+      "single-hop": 841
+    },
+    "avg_conversation_tokens_approx": 21475
+  },
+  "retrieval": {
+    "hybrid": {
+      "recall@1": 0.3407,
+      "hit@1": 0.3922,
+      "recall@5": 0.5824,
+      "hit@5": 0.6573,
+      "recall@10": 0.6731,
+      "hit@10": 0.7414,
+      "recall@25": 0.7889,
+      "hit@25": 0.8495,
+      "recall@50": 0.8522,
+      "hit@50": 0.9016,
+      "mrr": 0.5114,
+      "ndcg@10": 0.5231,
+      "recall@10_by_category": {
+        "multi-hop": 0.4877,
+        "open-domain": 0.4732,
+        "single-hop": 0.7333,
+        "temporal": 0.7357
+      }
+    },
+    "semantic": {
+      "recall@1": 0.3014,
+      "hit@1": 0.3518,
+      "recall@5": 0.5611,
+      "hit@5": 0.6339,
+      "recall@10": 0.6569,
+      "hit@10": 0.7251,
+      "recall@25": 0.7829,
+      "hit@25": 0.843,
+      "recall@50": 0.8484,
+      "hit@50": 0.8971,
+      "mrr": 0.4776,
+      "ndcg@10": 0.4936,
+      "recall@10_by_category": {
+        "multi-hop": 0.4849,
+        "open-domain": 0.4732,
+        "single-hop": 0.7107,
+        "temporal": 0.7201
+      }
+    },
+    "keyword": {
+      "recall@1": 0.1057,
+      "hit@1": 0.1179,
+      "recall@5": 0.1195,
+      "hit@5": 0.1355,
+      "recall@10": 0.1209,
+      "hit@10": 0.1381,
+      "recall@25": 0.122,
+      "hit@25": 0.1381,
+      "recall@50": 0.1231,
+      "hit@50": 0.1388,
+      "mrr": 0.1259,
+      "ndcg@10": 0.1181,
+      "recall@10_by_category": {
+        "multi-hop": 0.0631,
+        "open-domain": 0.0254,
+        "single-hop": 0.1165,
+        "temporal": 0.2109
+      }
+    },
+    "bm25": {
+      "recall@1": 0.313,
+      "hit@1": 0.3453,
+      "recall@5": 0.5229,
+      "hit@5": 0.5752,
+      "recall@10": 0.5931,
+      "hit@10": 0.6521,
+      "recall@25": 0.6689,
+      "hit@25": 0.7362,
+      "recall@50": 0.7194,
+      "hit@50": 0.7902,
+      "mrr": 0.4501,
+      "ndcg@10": 0.4631,
+      "recall@10_by_category": {
+        "multi-hop": 0.2767,
+        "open-domain": 0.2671,
+        "single-hop": 0.6986,
+        "temporal": 0.6883
+      }
+    },
+    "recency": {
+      "recall@1": 0.0003,
+      "hit@1": 0.0007,
+      "recall@5": 0.0018,
+      "hit@5": 0.0026,
+      "recall@10": 0.0099,
+      "hit@10": 0.0111,
+      "recall@25": 0.0336,
+      "hit@25": 0.041,
+      "recall@50": 0.0783,
+      "hit@50": 0.0945,
+      "mrr": 0.0055,
+      "ndcg@10": 0.0036,
+      "recall@10_by_category": {
+        "multi-hop": 0.0035,
+        "open-domain": 0.0136,
+        "single-hop": 0.0119,
+        "temporal": 0.0094
+      }
+    },
+    "dense": {
+      "recall@1": 0.1847,
+      "hit@1": 0.2124,
+      "recall@5": 0.3969,
+      "hit@5": 0.4541,
+      "recall@10": 0.5019,
+      "hit@10": 0.5746,
+      "recall@25": 0.6367,
+      "hit@25": 0.7173,
+      "recall@50": 0.7294,
+      "hit@50": 0.7928,
+      "mrr": 0.3263,
+      "ndcg@10": 0.3438,
+      "recall@10_by_category": {
+        "multi-hop": 0.3087,
+        "open-domain": 0.266,
+        "single-hop": 0.5698,
+        "temporal": 0.5617
+      }
+    }
+  },
+  "search_latency_ms": {
+    "hybrid": {
+      "client": {
+        "p50": 83.2,
+        "p95": 186.3,
+        "mean": 96.6,
+        "n": 1535
+      },
+      "server": {
+        "p50": 61.7,
+        "p95": 160.9,
+        "mean": 74.7,
+        "n": 1535
+      }
+    },
+    "semantic": {
+      "client": {
+        "p50": 75.4,
+        "p95": 168.0,
+        "mean": 85.8,
+        "n": 1535
+      },
+      "server": {
+        "p50": 63.1,
+        "p95": 153.8,
+        "mean": 72.7,
+        "n": 1535
+      }
+    },
+    "keyword": {
+      "client": {
+        "p50": 12.4,
+        "p95": 58.4,
+        "mean": 20.6,
+        "n": 1535
+      },
+      "server": {
+        "p50": 2.6,
+        "p95": 46.3,
+        "mean": 10.2,
+        "n": 1535
+      }
+    }
+  },
+  "ingestion": {
+    "turns_per_second": 19.2,
+    "total_seconds": 306.9
+  },
+  "context": {
+    "hybrid_top10_tokens_approx": 441
+  },
+  "published_reference": {
+    "locomo_dragon_dialog_recall": {
+      "5": 58.8,
+      "10": 67.5,
+      "25": 79.9,
+      "50": 84.8
+    },
+    "mem0_paper_table2": [
+      [
+        "Full-context (no memory layer)",
+        72.9,
+        null,
+        null,
+        26031
+      ],
+      [
+        "Mem0g (graph)",
+        68.44,
+        0.476,
+        0.657,
+        3616
+      ],
+      [
+        "Mem0",
+        66.88,
+        0.148,
+        0.2,
+        1764
+      ],
+      [
+        "Zep",
+        65.99,
+        0.513,
+        0.778,
+        3911
+      ],
+      [
+        "LangMem",
+        58.1,
+        17.99,
+        59.82,
+        127
+      ],
+      [
+        "OpenAI memory",
+        52.9,
+        null,
+        null,
+        4437
+      ],
+      [
+        "A-Mem",
+        48.38,
+        0.668,
+        1.485,
+        2520
+      ],
+      [
+        "Best RAG (k=2, 256-token chunks)",
+        60.97,
+        0.255,
+        0.699,
+        null
+      ]
+    ]
+  },
+  "baselines": {
+    "dense_model": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "environment": {
+    "base_url": "http://127.0.0.1:8001",
+    "finished_at": "2026-09-28T04:58:04.692526+00:00",
+    "server": {
+      "provider": "fastembed",
+      "model": "BAAI/bge-small-en-v1.5",
+      "loaded": true
+    }
+  }
+}
