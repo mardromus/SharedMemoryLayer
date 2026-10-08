@@ -33,5 +33,5 @@ The answer script checkpoints to `answers.jsonl`, so an interrupted run resumes 
 paper covers the first 135 questions of a 200-question stratified sample; `audit_labels.json` holds the manual
 audit of 60 judge decisions.
 
-Before submitting, replace `[Student Name]`, `[Guide Name]`, `[Institute Name]` and the e-mail placeholders
-in `main.template.tex` and re-run `fill_numbers.py`. The first version of the paper is kept in `previous/`.
+Author details are set in the `\author{...}` block of `main.template.tex`; edit them there and re-run
+`fill_numbers.py`. The first version of the paper is kept in `previous/`.
