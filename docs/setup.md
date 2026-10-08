@@ -1,5 +1,8 @@
 # Setup and operations
 
+This page covers running the stack on a development machine. To put it on a server with HTTPS, see
+[deployment.md](deployment.md).
+
 ## Requirements
 
 * Docker Engine 24+ with Docker Compose v2 (Docker Desktop on Windows/macOS). x86-64 and ARM64 both work.

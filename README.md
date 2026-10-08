@@ -34,7 +34,7 @@ AI agents ──► Agent gateway / REST API ──► Authentication ──► 
 14. [Evaluation methodology and results](#14-evaluation-methodology-and-results)
 15. [Future scope](#15-future-scope)
 
-Further documents: [integrations (MCP, SDKs, CLI, import)](docs/integrations.md) · [architecture](docs/architecture.md) · [security](docs/security.md) ·
+Further documents: [**deploying to a server (HTTPS)**](docs/deployment.md) · [integrations (MCP, SDKs, CLI, import)](docs/integrations.md) · [architecture](docs/architecture.md) · [security](docs/security.md) ·
 [database](docs/database.md) · [API](docs/api.md) · [setup & operations](docs/setup.md) ·
 [evaluation](docs/evaluation.md) · [academic documentation](docs/academic.md) (abstract, literature survey,
 research gap) · [SDK](sdk/README.md)
@@ -241,6 +241,19 @@ docker compose up --build
 
 Ports are configurable with `BACKEND_PORT` / `FRONTEND_PORT` in `.env`. Optional local LLM:
 `docker compose --profile llm up -d` + `LLM_PROVIDER=ollama` (see [docs/setup.md](docs/setup.md#4-optional-local-llm-with-ollama)).
+
+**Deploying to a server.** On any Linux VM with Docker (2 vCPU / 4 GB RAM, ports 80 and 443 open) and a domain
+name pointing at it — or `<server-ip-with-dashes>.sslip.io` without one:
+
+```bash
+git clone https://github.com/mardromus/SharedMemoryLayer.git && cd SharedMemoryLayer
+scripts/deploy.sh memory.example.com      # secrets, build, start, HTTPS certificate, health check
+```
+
+`docker-compose.prod.yml` puts Caddy in front for automatic Let's Encrypt HTTPS, publishes only ports 80/443,
+runs the backend in production mode (secure cookies, per-client rate limits behind the proxy) and rotates logs.
+Updates are `git pull && scripts/deploy.sh`; `scripts/backup.sh` dumps the database. Step-by-step guide,
+backups/restore and troubleshooting: [docs/deployment.md](docs/deployment.md).
 
 **Demo credentials** (created on first start):
 
