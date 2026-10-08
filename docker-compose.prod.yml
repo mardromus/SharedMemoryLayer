@@ -1,0 +1,119 @@
+name: shared-memory-layer-prod
+
+# Production deployment on a single Linux server (see docs/deployment.md):
+#
+#     python3 scripts/generate_env.py --production --domain memory.example.com
+#     docker compose -f docker-compose.prod.yml up -d --build --wait
+#
+# Differences from docker-compose.yml (development):
+#   * Caddy terminates HTTPS with an automatic Let's Encrypt certificate for $DOMAIN;
+#     only ports 80/443 are published - PostgreSQL, Qdrant and the API are reachable
+#     from the internal network only.
+#   * ENVIRONMENT=production, secure cookies, client IPs taken from the proxy chain
+#     (Caddy -> nginx -> API) so per-client rate limits work and cannot be spoofed.
+#   * No test database, no evaluation volume, bounded container logs.
+#   * Its own project name, so it never shares volumes with a development stack.
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sml}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is not set - run scripts/generate_env.py --production}
+      POSTGRES_DB: ${POSTGRES_DB:-shared_memory}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  qdrant:
+    image: qdrant/qdrant:v1.13.4
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      QDRANT__SERVICE__API_KEY: ${QDRANT_API_KEY:?QDRANT_API_KEY is not set - run scripts/generate_env.py --production}
+      QDRANT__TELEMETRY_DISABLED: "true"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/6333 && echo -e \"GET /readyz HTTP/1.0\\r\\n\\r\\n\" >&3 && grep -q \"200 OK\" <&3'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    logging: *logging
+    env_file: .env
+    environment:
+      ENVIRONMENT: production
+      COOKIE_SECURE: "true"
+      TRUST_PROXY_HEADERS: "true"
+      # uvicorn --proxy-headers: the API is only reachable through nginx on the internal network
+      FORWARDED_ALLOW_IPS: "*"
+      CORS_ORIGINS: https://${DOMAIN:?DOMAIN is not set - run scripts/generate_env.py --production --domain <host>}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-sml}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-shared_memory}
+      QDRANT_URL: http://qdrant:6333
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is not set - run scripts/generate_env.py --production}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health/live', timeout=3).status == 200 else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    logging: *logging
+    volumes:
+      # trust X-Forwarded-For only from the proxy in front (Caddy, internal network)
+      - ./infrastructure/nginx/real-ip.conf:/etc/nginx/conf.d/00-real-ip.conf:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      DOMAIN: ${DOMAIN}
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+      - "${HTTPS_PORT:-443}:443/udp"
+    volumes:
+      - ./infrastructure/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      frontend:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  caddy_data:
+  caddy_config:

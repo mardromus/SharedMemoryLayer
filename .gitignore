@@ -26,6 +26,7 @@ frontend/dist/
 
 # Runtime data
 data/
+backups/
 evaluation/results/*
 !evaluation/results/.gitkeep
 *.log

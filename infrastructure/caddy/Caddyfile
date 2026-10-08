@@ -1,0 +1,21 @@
+# HTTPS entry point of the production stack (docker-compose.prod.yml).
+# Caddy obtains and renews a Let's Encrypt certificate for $DOMAIN automatically
+# and redirects HTTP to HTTPS. Everything is forwarded to the frontend container,
+# whose nginx serves the dashboard and proxies /api, /mcp, /docs and /health.
+#
+# DOMAIN must resolve to this server. Without a domain name, use
+# <ip-with-dashes>.sslip.io (e.g. 203-0-113-10.sslip.io). DOMAIN=localhost gives a
+# locally trusted (self-signed) certificate for testing.
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+
+	# Caddy replaces any client-supplied X-Forwarded-For with the real client
+	# address (no trusted_proxies configured), so nginx and the API can rely on it.
+	reverse_proxy frontend:80
+}
