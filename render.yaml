@@ -30,6 +30,8 @@ services:
         value: "true"
       - key: LLM_PROVIDER
         value: none
+      - key: MAX_FAILED_LOGINS
+        value: "0"
       - key: ADMIN_USERNAME
         value: admin
 
