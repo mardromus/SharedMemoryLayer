@@ -33,6 +33,7 @@ COPY --from=frontend /app/dist /usr/share/nginx/html
 COPY deploy/render/nginx.conf /etc/nginx/sml.conf.template
 COPY infrastructure/nginx/real-ip.conf /etc/nginx/real-ip.conf
 COPY deploy/render/reindex.py /app/reindex.py
+COPY deploy/render/sync_admin.py /app/sync_admin.py
 COPY deploy/render/start.sh /start.sh
 RUN chmod +x /start.sh && mkdir -p /qdrant/storage
 

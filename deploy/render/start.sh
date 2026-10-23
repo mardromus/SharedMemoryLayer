@@ -13,6 +13,9 @@ i=0; until curl -sf http://127.0.0.1:6333/readyz >/dev/null; do i=$((i+1)); [ $i
 echo "applying database migrations..."
 cd /app && alembic upgrade head
 
+echo "syncing the admin account with ADMIN_PASSWORD..."
+python /app/sync_admin.py
+
 echo "rebuilding the vector index from PostgreSQL..."
 python /app/reindex.py
 
