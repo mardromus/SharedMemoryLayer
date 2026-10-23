@@ -133,3 +133,22 @@ hosted model set `LLM_PROVIDER=openai` or `anthropic` and the matching API key i
 Testing the production stack on a laptop: `python3 scripts/generate_env.py --production --domain localhost`
 (in a separate clone, so the development `.env` is kept) and `scripts/deploy.sh`; Caddy then uses a
 locally generated certificate that browsers warn about.
+
+## 9. Alternative: Render (no server to manage)
+
+`render.yaml` at the repository root is a Render Blueprint. It creates:
+
+* **shared-memory-layer**: one free Docker web service built from `deploy/render/Dockerfile`. It runs nginx (dashboard and API on one origin), the FastAPI backend and an embedded Qdrant.
+* **sml-db**: a free Render PostgreSQL database, the system of record.
+
+Qdrant keeps no disk on the free plan. On every start, `deploy/render/reindex.py` rebuilds the vector index from PostgreSQL, so no data is lost when the service sleeps or restarts.
+
+Steps:
+
+1. Sign in at https://dashboard.render.com and connect your GitHub account.
+2. Choose **New + → Blueprint**, pick this repository and the branch that contains `render.yaml`, then click **Apply**.
+3. Wait for the first build to finish (about 10 minutes).
+4. Open the service URL (`https://shared-memory-layer-xxxx.onrender.com`).
+5. Log in as `admin`. The password is `ADMIN_PASSWORD` under **Environment** on the service page.
+
+Free-plan limits: the service sleeps after 15 minutes without traffic, and the first request then takes about a minute to wake it. Memory is 512 MB, of which the stack uses about 400 MB. A free Render PostgreSQL database expires after 30 days; after that, upgrade it or create a new one.

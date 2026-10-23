@@ -177,3 +177,12 @@ def test_password_policy_enforced(client, factory):
     r = client.post("/api/auth/register", headers=factory.admin, json={"username": unique("weak"), "password": "password"})
     assert r.status_code == 422
     assert "password" in r.json()["error"]["details"]
+
+
+def test_lockout_can_be_disabled(client, factory, monkeypatch):
+    monkeypatch.setattr(get_settings(), "max_failed_logins", 0)
+    user = factory.user("READ_ONLY")
+    for _ in range(8):
+        client.post("/api/auth/login", json={"username": user["username"], "password": "Wrong-Passw0rd!"})
+    ok = client.post("/api/auth/login", json={"username": user["username"], "password": STRONG_PASSWORD})
+    assert ok.status_code == 200

@@ -1,0 +1,43 @@
+# Render Blueprint: one-click deployment of the Shared Memory Layer.
+# Dashboard: New + > Blueprint > connect this repository > Apply.
+services:
+  - type: web
+    name: shared-memory-layer
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./deploy/render/Dockerfile
+    dockerContext: .
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sml-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: DEMO_USER_PASSWORD
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TRUST_PROXY_HEADERS
+        value: "true"
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: LLM_PROVIDER
+        value: none
+      - key: MAX_FAILED_LOGINS
+        value: "0"
+      - key: ADMIN_USERNAME
+        value: admin
+
+databases:
+  - name: sml-db
+    plan: free
+    region: singapore
+    databaseName: shared_memory
+    user: sml
