@@ -51,14 +51,15 @@ class AuthService:
     def login(self, username: str, password: str, ip: str | None, user_agent: str | None) -> tuple[TokenResponse, User]:
         user = self.db.scalar(select(User).where(User.username == username))
         now = datetime.now(timezone.utc)
-        if user is not None and user.locked_until is not None and user.locked_until > now:
+        lockout_enabled = self.settings.max_failed_logins > 0  # MAX_FAILED_LOGINS=0 turns lockout off
+        if lockout_enabled and user is not None and user.locked_until is not None and user.locked_until > now:
             verify_password(password, None)  # constant-ish time
             record(AuditAction.AUTH_LOGIN_FAILED, AuditStatus.DENIED, actor_name=username, actor_type=ActorType.USER, reason="Account temporarily locked", ip_address=ip, user_agent=user_agent)
             raise UnauthorizedError("Account temporarily locked due to repeated failed logins. Try again later.")
 
         if user is None or not verify_password(password, user.password_hash) or not user.is_active:
             reason = "Unknown username" if user is None else ("Account disabled" if not user.is_active else "Invalid password")
-            if user is not None and reason == "Invalid password":
+            if lockout_enabled and user is not None and reason == "Invalid password":
                 user.failed_login_count += 1
                 if user.failed_login_count >= self.settings.max_failed_logins:
                     user.locked_until = now + timedelta(minutes=self.settings.lockout_minutes)

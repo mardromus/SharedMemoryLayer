@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     jwt_issuer: str = "shared-memory-layer"
     cookie_secure: bool = False
     allow_public_registration: bool = False
-    max_failed_logins: int = 5
+    max_failed_logins: int = 5  # 0 disables account lockout
     lockout_minutes: int = 15
     password_min_length: int = 10
 
